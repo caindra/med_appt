@@ -26,20 +26,27 @@ function Login() {
     };
 
     try {
-      console.log('Iniciando sesión:', loginData);
+      // ✅ LLAMADA REAL A API
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginData)
+      });
+      const data = await response.json();
       
-      if (formData.email && formData.password) {
-        localStorage.setItem('token', 'fake-jwt-token');
+      if (data.success) {
+        localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', formData.email);
-        localStorage.setItem('userName', formData.email.split('@')[0]);
+        localStorage.setItem('userName', data.user.name || formData.email.split('@')[0]);
         navigate('/');
       } else {
-        setError('Credenciales inválidas');
+        setError(data.message || 'Credenciales inválidas');
       }
+      
+      // ❌ Eliminar la simulación
     } catch (err) {
-      setError('Error al iniciar sesión');
-    }
-  };
+      setError('Error al conectar con el servidor');
+    };
 
   return (
     <div style={{
