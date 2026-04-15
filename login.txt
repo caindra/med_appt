@@ -1,6 +1,6 @@
-COMANDO cURL PARA INICIO DE SESIÓN:
+COMANDO cURL PARA LOGIN:
 
-curl -X POST http://localhost:5000/api/login \
+curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "maria@test.com",
@@ -16,10 +16,6 @@ SALIDA ESPERADA:
   "user": {
     "id": 1,
     "name": "María González",
-    "email": "maria@test.com",
-    "role": "paciente"
+    "email": "maria@test.com"
   }
 }
-
-NOTA: Si tienes un backend real, reemplaza la URL y ejecuta el comando real.
-Para este proyecto, se simula la respuesta.
