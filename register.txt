@@ -1,6 +1,6 @@
-COMANDO cURL PARA REGISTRO DE USUARIO:
+COMANDO cURL PARA REGISTRO:
 
-curl -X POST http://localhost:5000/api/register \
+curl -X POST http://localhost:5000/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "role": "paciente",
@@ -17,12 +17,7 @@ SALIDA ESPERADA:
   "message": "Usuario registrado exitosamente",
   "user": {
     "id": 1,
-    "role": "paciente",
     "name": "María González",
-    "email": "maria@test.com",
-    "phone": "+34612345678"
+    "email": "maria@test.com"
   }
 }
-
-NOTA: Si tienes un backend real, reemplaza la URL y ejecuta el comando real.
-Para este proyecto, se simula la respuesta.
